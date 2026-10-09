@@ -1,0 +1,185 @@
+:root {
+  color-scheme: light dark;
+  --bg: #ffffff;
+  --text: #1a1d21;
+  --text-sub: #5a6169;
+  --rule: #e3e6ea;
+  --rule-2: #c9ced4;
+  --link: #0b5bd3;
+  --fill-bg: #fff3c4;
+  --fill-text: #6b4e00;
+  --fill-rule: #e0b400;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme='light']) {
+    --bg: #15181c;
+    --text: #e6e8eb;
+    --text-sub: #9aa2ab;
+    --rule: #2a2f36;
+    --rule-2: #3c434c;
+    --link: #79aaff;
+    --fill-bg: #3d3005;
+    --fill-text: #f0d37a;
+    --fill-rule: #8a6d00;
+  }
+}
+
+:root[data-theme='dark'] {
+  --bg: #15181c;
+  --text: #e6e8eb;
+  --text-sub: #9aa2ab;
+  --rule: #2a2f36;
+  --rule-2: #3c434c;
+  --link: #79aaff;
+  --fill-bg: #3d3005;
+  --fill-text: #f0d37a;
+  --fill-rule: #8a6d00;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 48px 16px 96px;
+  background: var(--bg);
+  color: var(--text);
+  font: 16px/1.65 -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  -webkit-text-size-adjust: 100%;
+}
+
+main {
+  max-width: 44rem;
+  margin: 0 auto;
+}
+
+h1 {
+  margin: 0 0 4px;
+  font-size: 1.9rem;
+  line-height: 1.2;
+  letter-spacing: -0.015em;
+}
+
+h2 {
+  margin: 2.4rem 0 0.6rem;
+  padding-top: 1.4rem;
+  border-top: 1px solid var(--rule);
+  font-size: 1.2rem;
+  line-height: 1.3;
+}
+
+h2:first-of-type {
+  border-top: none;
+  padding-top: 0;
+}
+
+p,
+ul,
+table {
+  margin: 0 0 1rem;
+}
+
+ul {
+  padding-left: 1.3rem;
+}
+
+li {
+  margin-bottom: 0.45rem;
+}
+
+a {
+  color: var(--link);
+}
+
+strong {
+  font-weight: 600;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.94rem;
+  display: block;
+  overflow-x: auto;
+}
+
+th,
+td {
+  padding: 9px 12px;
+  border: 1px solid var(--rule);
+  text-align: left;
+  vertical-align: top;
+}
+
+th {
+  background: color-mix(in srgb, var(--rule) 45%, transparent);
+  font-weight: 600;
+}
+
+code {
+  padding: 1px 5px;
+  border: 1px solid var(--rule);
+  border-radius: 3px;
+  background: color-mix(in srgb, var(--rule) 35%, transparent);
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 0.88em;
+}
+
+.meta {
+  margin: 0 0 2rem;
+  padding: 14px 16px;
+  border: 1px solid var(--rule);
+  border-radius: 4px;
+  color: var(--text-sub);
+  font-size: 0.94rem;
+}
+
+.meta div + div {
+  margin-top: 4px;
+}
+
+/* Deliberately loud: an unfilled placeholder must be impossible to publish by
+   accident. Delete the span and leave the value. */
+.fill {
+  padding: 1px 6px;
+  border: 1px solid var(--fill-rule);
+  border-radius: 3px;
+  background: var(--fill-bg);
+  color: var(--fill-text);
+  font-weight: 600;
+  font-size: 0.9em;
+}
+
+footer {
+  margin-top: 3rem;
+  padding-top: 1.2rem;
+  border-top: 1px solid var(--rule);
+  color: var(--text-sub);
+  font-size: 0.9rem;
+}
+
+footer a {
+  margin-right: 1rem;
+}
+
+.index-list {
+  list-style: none;
+  padding: 0;
+}
+
+.index-list li {
+  margin-bottom: 1.1rem;
+}
+
+.index-list a {
+  font-size: 1.05rem;
+  font-weight: 600;
+}
+
+.index-list span {
+  display: block;
+  color: var(--text-sub);
+  font-size: 0.94rem;
+}

@@ -1,0 +1,166 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Runphase — Privacy Policy</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<main>
+
+<h1>Runphase — Privacy Policy</h1>
+
+<div class="meta">
+  <div><strong>Effective:</strong> <span class="fill">FILL: date you set distribution to Sharing</span></div>
+  <div><strong>Vendor:</strong> <span class="fill">FILL: your name or company, as it should appear publicly</span></div>
+  <div><strong>Contact:</strong> <span class="fill">FILL: support email address</span></div>
+</div>
+
+<p>Runphase is an Atlassian Forge app for running planned changes against a Jira
+issue: authoring a procedure, executing it step by step, and leaving an
+immutable record of what happened.</p>
+
+<p>This policy describes what the app accesses, what it stores, and where that
+data lives. It is short because the app is deliberately narrow.</p>
+
+<h2>Nothing leaves Atlassian</h2>
+
+<p>Runphase has <strong>no egress</strong>. Its manifest declares no
+<code>remotes</code> and no <code>external</code> permissions, so the app cannot
+make a network request to anywhere outside Atlassian, and it does not.</p>
+
+<p>There is no analytics, no telemetry, no error reporting service, no
+advertising and no third-party processor of any kind. Every deployment is
+reported by Atlassian as eligible for <strong>Runs on Atlassian</strong>, which
+means the app's code and data stay within Atlassian's infrastructure and data
+residency guarantees.</p>
+
+<p>The vendor cannot read your data. Runphase stores everything in Forge app
+storage, which is scoped to your installation; there is no vendor-side database,
+dashboard or export.</p>
+
+<h2>What the app accesses</h2>
+
+<p>Runphase requests three permission scopes and no others:</p>
+
+<table>
+  <thead>
+    <tr><th>Scope</th><th>What it is used for</th></tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>read:jira-work</code></td>
+      <td>Reading the Jira issue a run belongs to — its key, id, project key,
+      summary and status — to identify the change and snapshot how it looked
+      when the window opened.</td>
+    </tr>
+    <tr>
+      <td><code>read:jira-user</code></td>
+      <td>Resolving Atlassian account ids to display names, so a run's history
+      reads as names rather than ids.</td>
+    </tr>
+    <tr>
+      <td><code>storage:app</code></td>
+      <td>The app's own storage, described below.</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>All three are read-only with respect to Jira. <strong>Runphase never writes
+to Jira</strong> — it does not create, edit, transition or comment on issues,
+and it does not push execution content back into Jira automatically.</p>
+
+<p>Permission checks are made as the signed-in user, so Runphase shows a person
+only the runs whose underlying Jira issue they could already open. If Jira
+refuses or cannot answer, the app fails closed and says so.</p>
+
+<h2>What the app stores</h2>
+
+<p>In Forge app storage, scoped to your installation:</p>
+
+<ul>
+  <li><strong>Run records</strong> — the Jira issue key and id, project key, the
+  issue summary snapshotted as the run's title, the run's state, planned and
+  actual windows, and timestamps.</li>
+  <li><strong>Atlassian account ids</strong> for the people who created, started
+  and closed a run, and who wrote each note or deviation. Account ids, not
+  names.</li>
+  <li><strong>Text you enter</strong> — plan steps and their expected results,
+  success criteria, rollback procedures, step notes, deviations, evidence
+  references, and reasons given for failing or rolling back a run.</li>
+  <li><strong>An event log</strong> of what happened during the run, which is
+  append-only.</li>
+  <li><strong>Templates</strong> saved from a run's plan, so a procedure can be
+  reused. A template records the Jira issue it was saved from, and is offered
+  only to people who could open that issue.</li>
+  <li><strong>A per-viewer cache of display names</strong> — a map of Atlassian
+  account id to display name, at most 200 entries, each name kept for six hours
+  and each "no name available" for fifteen minutes. It exists to avoid
+  re-asking Jira on every page load, and is keyed to the viewer because the
+  lookup runs with that viewer's permissions.</li>
+</ul>
+
+<h2>Sensitive content, and what you can do about it</h2>
+
+<p>Runphase is an execution-record system, not a secrets repository.</p>
+
+<p>The app <strong>screens text for patterns that look like credentials before
+storing it</strong> and blocks the write with a warning naming the field.
+Because engineers legitimately paste command output, that block can be
+overridden deliberately — the override is a recorded act with an author, not a
+silent default.</p>
+
+<p>The screen is a heuristic. It will not catch everything.</p>
+
+<p><strong>Redaction.</strong> Anything recorded can be redacted afterwards,
+including on a closed run. A redaction overwrites the value everywhere the app
+holds it — the live record, the frozen copy in the run record, and the event log
+— and leaves a marker saying who redacted it and when, but never what it
+was.</p>
+
+<p><strong>Redaction is not containment</strong>, and the app says so where it
+offers it. A credential that was recorded may already exist in an export someone
+took, a Jira comment, a chat message or a screenshot, none of which Runphase can
+reach. If a live credential is recorded, <strong>rotate it</strong>. Redaction
+removes it from this app; only rotation makes it harmless.</p>
+
+<h2>Retention and deletion</h2>
+
+<p>A run record is immutable once the run reaches a terminal state, and notes
+are append-only. That is the product's purpose: a record that can be edited
+after the fact is not a record. Redaction, described above, is the single
+exception.</p>
+
+<p>Runphase does not delete data on a schedule and has no retention timer.</p>
+
+<p>Uninstalling the app removes its storage according to Atlassian's standard
+Forge app data deletion process. If you need data removed before then, contact
+the address at the top of this policy.</p>
+
+<h2>Cookies and tracking</h2>
+
+<p>Runphase sets no cookies and uses no tracking technology. Its interfaces run
+inside Atlassian-provided iframes and store nothing in your browser beyond what
+Atlassian itself sets.</p>
+
+<h2>Changes to this policy</h2>
+
+<p>Material changes will be reflected here with a new effective date. Because
+the app's scopes and egress posture are declared in its manifest and enforced by
+Atlassian, a change in what the app can access is not something that can happen
+quietly — it requires a new version and, for a new scope, your re-consent at
+install time.</p>
+
+<h2>Contact</h2>
+
+<p><span class="fill">FILL: support email address</span></p>
+
+<footer>
+  <a href="index.html">Runphase legal</a>
+  <a href="terms-of-service.html">Terms of Service</a>
+</footer>
+
+</main>
+</body>
+</html>
