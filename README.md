@@ -14,24 +14,33 @@ spaces and issue keys, and none of that belongs behind a public URL.
 
 | File | URL once Pages is enabled |
 |---|---|
-| `privacy-policy.html` | `https://<user>.github.io/runphase-legal/privacy-policy.html` |
-| `terms-of-service.html` | `https://<user>.github.io/runphase-legal/terms-of-service.html` |
-| `index.html` | `https://<user>.github.io/runphase-legal/` |
+| `privacy-policy.html` | `https://nbm2621.github.io/runphase-legal/privacy-policy.html` |
+| `terms-of-service.html` | `https://nbm2621.github.io/runphase-legal/terms-of-service.html` |
+| `index.html` | `https://nbm2621.github.io/runphase-legal/` |
 
 `.nojekyll` is present deliberately. These are plain static files with no build
 step, so the URLs cannot break because a Jekyll build failed — which matters,
 because they are recorded in a vendor record that users see at install time.
 
-## Before publishing
+## The published values
 
-Every placeholder renders as a **loud highlighted box** in the page itself, so
-an unfilled one cannot be shipped by accident. Search for `class="fill"` and
-replace each `<span>…</span>` with the value:
+| | |
+|---|---|
+| Vendor | Skram Systems, LLC |
+| Public name | Runphase |
+| Contact | support@runphase.com |
+| Effective | 2026-10-16 |
+| Governing law | Commonwealth of Virginia, United States |
 
-- Effective date — the day distribution is set to Sharing
-- Vendor name, as it should appear publicly
-- Support email address
-- Governing jurisdiction (terms only)
+The contact address is not decorative: the privacy policy names it as the
+channel for a data deletion request, so it has to keep receiving mail for as
+long as the app is listed.
+
+The `.fill` rule in `style.css` is kept although nothing uses it now. It renders
+a placeholder as a **loud highlighted box**, which is what made it impossible to
+publish an unfilled one by accident the first time round; the next time one of
+these values has to be decided rather than typed, wrap it in
+`<span class="fill">` and the same guard applies.
 
 ## Keeping them accurate
 
