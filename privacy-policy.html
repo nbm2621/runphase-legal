@@ -43,7 +43,7 @@ dashboard, and no export.</p>
 
 <h2>What the app reads</h2>
 
-<p>Runphase asks for three permission scopes and no others.</p>
+<p>Runphase asks for four permission scopes and no others.</p>
 
 <table>
   <thead>
@@ -65,12 +65,20 @@ dashboard, and no export.</p>
       <td><code>storage:app</code></td>
       <td>The app's own storage, described below.</td>
     </tr>
+    <tr>
+      <td><code>report:personal-data</code></td>
+      <td>Telling Atlassian which account ids this app is holding, so that
+      Atlassian can tell the app when one of those accounts has been updated
+      or closed. Described under <a href="#closure">account closure</a>
+      below.</td>
+    </tr>
   </tbody>
 </table>
 
-<p>All three are read-only as far as Jira is concerned. <strong>Runphase never
-writes to Jira.</strong> It does not create, edit, transition or comment on
-issues, and nothing you record during a run is pushed back into Jira.</p>
+<p>The first three are read-only as far as Jira is concerned, and the fourth
+does not touch Jira at all. <strong>Runphase never writes to Jira.</strong> It
+does not create, edit, transition or comment on issues, and nothing you record
+during a run is pushed back into Jira.</p>
 
 <p>Permission checks run as the signed-in user, so a person sees only the runs
 whose underlying Jira issue they could already open. Where Jira refuses to
@@ -123,6 +131,29 @@ offers it. A credential that was recorded may already sit in an export somebody
 took, in a Jira comment, in a chat message or in a screenshot, and Runphase can
 reach none of those. So if a live credential has been recorded, rotate it.
 Redaction removes it from this app. Only rotation makes it harmless.</p>
+
+<h2 id="closure">When an Atlassian account is closed</h2>
+
+<p>Almost everything personal in Runphase is an account id. Names are not
+stored in the record at all: a run holds the account id of whoever created,
+started or closed it, and of the author of each note and deviation, and the
+name you see on screen is looked up when the page loads and held in the cache
+described above for at most six hours.</p>
+
+<p>Because the app keeps those account ids, it reports them to Atlassian on a
+recurring cycle, which is what the <code>report:personal-data</code> scope is
+for. Atlassian answers with any account that has since been updated or closed.
+An updated account means the cached name is stale, and it is dropped so the
+next page load asks again. A closed account means the person's Atlassian
+account no longer exists, and their cached name is erased rather than left to
+expire.</p>
+
+<p>The account id itself stays in the records it appears in. A run says who
+carried out a change and when, which is the thing the app exists to produce,
+and a record that quietly loses its actors is not much of an audit trail. If
+you need a particular record altered, redaction works on any run including a
+closed one, and the contact address at the top of this policy reaches a
+person.</p>
 
 <h2>Retention and deletion</h2>
 
