@@ -18,9 +18,9 @@ spaces and issue keys, and none of that belongs behind a public URL.
 | `terms-of-service.html` | `https://nbm2621.github.io/runphase-legal/terms-of-service.html` |
 | `index.html` | `https://nbm2621.github.io/runphase-legal/` |
 
-`.nojekyll` is present deliberately. These are plain static files with no build
-step, so the URLs cannot break because a Jekyll build failed — which matters,
-because they are recorded in a vendor record that users see at install time.
+`.nojekyll` is there on purpose. These are plain static files with no build
+step, so the URLs cannot break because a Jekyll build failed. That matters,
+because they go into a vendor record users see at install time.
 
 ## The published values
 
@@ -44,10 +44,10 @@ these values has to be decided rather than typed, wrap it in
 
 ## Keeping them accurate
 
-Both documents make specific, checkable claims about the app — three scopes, no
+Both documents make specific, checkable claims about the app: three scopes, no
 egress, no writes to Jira, what redaction reaches, the display-name cache's
-limits. They were written from the app's `manifest.yml` and product rules, not
-from a template.
+limits. They were written from the app's `manifest.yml` and its product rules,
+not from a template.
 
 So: **if a scope is added, if a `remotes` or `external` block ever appears in
 the manifest, or if the app starts writing to Jira, these pages are wrong and
